@@ -2,14 +2,14 @@
 
 / {
     chosen {
-        zmk,kscan = &kscan0;
-        zmk,matrix_transform = &default_transform;
+        zmk,kscan = &mock_kscan;
     };
 
-    default_transform: keymap_transform_0 {
-        compatible = "zmk,matrix-transform";
-        columns = <12>;
-        rows = <6>;
+    mock_kscan: mock_kscan_0 {
+        compatible = "zmk,kscan-mock";
+        columns = <0>;
+        rows = <0>;
+        events = <0>;
 // | MX1  | MX2  | MX3  | MX4  | MX5  | MX6  |                 | MX7  | MX8  | MX9  | MX10 | MX11 | MX12 |
 // | MX13 | MX14 | MX15 | MX16 | MX17 | MX18 |                 | MX19 | MX20 | MX21 | MX22 | MX23 | MX24 |
 // | MX25 | MX26 | MX27 | MX28 | MX29 | MX30 |                 | MX31 | MX32 | MX33 | MX34 | MX35 | MX36 |
@@ -25,20 +25,19 @@ RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5)                   RC(3,11) RC(3,
                         RC(5,3)         RC(5,3)                   RC(5,9)           RC(5,3)
         >;
     };
+};
 
-    kscan0: kscan {
-        compatible = "zmk,kscan-gpio-matrix";
-        label = "KSCAN";
+/ {
+    physical_layout0: physical_layout_0 {
+        compatible = "zmk,physical-layout";
+        display-name = "Default Layout";
+        transform = &keymap_transform_0;
+    };
+};
 
-        diode-direction = "col2row";
-        row-gpios
-            = <&gpio0 9  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 0 from the schematic file
-            , <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 1 from the schematic file
-            , <&gpio1 11 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 2 from the schematic file
-            , <&gpio1 13 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 3 from the schematic file
-            , <&gpio1 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 4 from the schematic file
-            , <&gpio0 2  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // Row 5 from the schematic file
-            ;
-
+/ {
+    chosen {
+        zmk,kscan = &mock_kscan;
+        zmk,physical-layout = &physical_layout0;  // New item added
     };
 };
