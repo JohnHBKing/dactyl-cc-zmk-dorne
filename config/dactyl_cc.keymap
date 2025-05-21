@@ -26,10 +26,6 @@
 #define VOL_DN       C_VOLUME_DOWN
 
 
-&kscan0 {
-       debounce-press-ms = <30>;
-       debounce-release-ms = <30>;
-};
 
 / {
        behaviors {
