@@ -16,6 +16,11 @@
 };
 
 
+&kscan0 {
+    debounce-press-ms = <30>;
+    debounce-release-ms = <30>;
+};
+
 / {
     keymap {
         compatible = "zmk,keymap";
